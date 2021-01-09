@@ -19,7 +19,6 @@ public class MutableMonitoringTests {
         InfrastructureAPI infrastructureAPI = new TestInfrastructureAPIFactory().createChangingInfastructureAPI();
         VirtualClusterId virtualClusterId = new VirtualClusterId(TestInfrastructureAPIFactory.CHANGEABLE_TEST_CLUSTER);
         StatisticsLoader statisticsLoader = new StandardStatisticsLoader(infrastructureAPI, Stream.of(virtualClusterId).collect(Collectors.toSet()));
-        PhysicalInstanceId instanceToBeChange = new PhysicalInstanceId(TestInfrastructureAPIFactory.CHANGEABLE_TEST_INSTANCE);
 
         //When
         final IterationStatistics firstStatistics = statisticsLoader.gatherStatistics();
