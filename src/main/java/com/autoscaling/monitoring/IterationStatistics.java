@@ -14,12 +14,14 @@ public class IterationStatistics {
     }
 
     public VirtualMachine getInstance(VirtualMachineId virtualMachineId){
-//        for (VirtualCluster value : virtualClusterMap.values()) {
-//            for (VirtualClusterId virtualClusterId : value.g) {
-//
-//            }
-//        }
-        return null;
+        // TODO -> not very optimal
+        for (VirtualCluster cluster : virtualClusterMap.values()) {
+            for (VirtualMachine machine : cluster.getMachines()) {
+                if(machine.getInstanceId().equals(virtualMachineId)){
+                    return machine;
+                }
+            }
+        }
+        throw new RuntimeException("Instance with id " + virtualMachineId.getMachineId() + " has not beed found! ");
     }
-
 }

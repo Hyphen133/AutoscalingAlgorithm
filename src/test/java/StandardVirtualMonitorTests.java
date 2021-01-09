@@ -24,6 +24,5 @@ public class StandardVirtualMonitorTests {
         //Then
         assertNotEquals(iterationStatistics.getCluster(virtualClusterId), null );
         assertNotEquals(iterationStatistics.getInstance(new VirtualMachineId(TestInfrastructureAPIFactory.FIRST_INSTANCE_NAME)), null );
-
     }
 }
