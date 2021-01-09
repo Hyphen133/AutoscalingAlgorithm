@@ -1,0 +1,26 @@
+@startuml
+!include https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+
+
+Person(developer, "Developer", "Person, who want to automatically adjust application to load")
+Person(application_user, "Application User", "Person, who want to interract with application API")
+
+
+System_Boundary(application_autoscaling,"Application Autoscaler"){
+Container(autoscaler, "Autoscaler", "Java" , "Automatically adjusts number of physical machines" )
+Container(load_balancer, "Load Balancer", "Java", "Automatically distributes tasks among physical machines")
+Container(virtual_monitor, "Virtual Monitor", "Java", "Collects information about physical machines")
+Container(infrastructure_api, "Infrastructure API", "Python, AWS", "Managing real physical machines")
+
+}
+
+Rel(developer, autoscaler, "Configuring machine size limits using", "")
+Rel(application_user, load_balancer, "Send request using", "")
+Rel(autoscaler, virtual_monitor, "Check machine information using", "")
+Rel(load_balancer, virtual_monitor, "Check machine information using", "")
+Rel(virtual_monitor, infrastructure_api, "Collect information about machines using" ,"")
+Rel(autoscaler, infrastructure_api, "Change number of physical machines using", "")
+Rel(load_balancer, infrastructure_api, "Send request to physical instance using", "")
+
+
+@enduml
