@@ -2,6 +2,8 @@ package com.autoscaler.monitoring;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class IterationStatistics {
     private Date date;
@@ -19,12 +21,16 @@ public class IterationStatistics {
     public VirtualMachine getInstance(VirtualMachineId virtualMachineId){
         // TODO -> not very optimal
         for (VirtualCluster cluster : virtualClusterMap.values()) {
-            for (VirtualMachine machine : cluster.getMachines()) {
-                if(machine.getInstanceId().equals(virtualMachineId)){
-                    return machine;
-                }
+            try{
+                cluster.getMachine(virtualMachineId);
+            }catch (RuntimeException e){
+                //Try another
             }
         }
         throw new RuntimeException("Instance with id " + virtualMachineId.getMachineId() + " has not beed found! ");
+    }
+
+    public Set<VirtualCluster> getAllClusters(){
+        return virtualClusterMap.values().stream().collect(Collectors.toSet());
     }
 }

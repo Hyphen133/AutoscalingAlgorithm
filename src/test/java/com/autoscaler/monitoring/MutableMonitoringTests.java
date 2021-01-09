@@ -1,5 +1,6 @@
-package com.autoscaler;
+package com.autoscaler.monitoring;
 
+import com.autoscaler.TestInfrastructureAPIFactory;
 import com.autoscaler.infastructureapi.InfrastructureAPI;
 import com.autoscaler.infastructureapi.PhysicalInstanceId;
 import com.autoscaler.monitoring.IterationStatistics;

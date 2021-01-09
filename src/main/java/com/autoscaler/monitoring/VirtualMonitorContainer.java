@@ -10,7 +10,7 @@ public class VirtualMonitorContainer {
         this.statistics.add(statistics);
     }
 
-    List<IterationStatistics> getLastStatistics(int numberOfStatistics){
+    public List<IterationStatistics> getLastStatistics(int numberOfStatistics){
         //TODO -> this shoudl be time dependent
         return statistics.subList(statistics.size()-numberOfStatistics, statistics.size());
     }

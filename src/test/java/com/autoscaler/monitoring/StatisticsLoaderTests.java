@@ -1,7 +1,8 @@
-package com.autoscaler;
+package com.autoscaler.monitoring;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.autoscaler.TestInfrastructureAPIFactory;
 import com.autoscaler.infastructureapi.InfrastructureAPI;
 import com.autoscaler.monitoring.IterationStatistics;
 import com.autoscaler.monitoring.StandardStatisticsLoader;
