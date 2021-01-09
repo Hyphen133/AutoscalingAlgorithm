@@ -1,10 +1,16 @@
 package com.autoscaler.monitoring;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class VirtualMonitorContainer {
 
     private List<IterationStatistics> statistics;
+
+    public VirtualMonitorContainer() {
+        this.statistics = new ArrayList<>();
+    }
 
     public synchronized void addEntry(IterationStatistics statistics){
         this.statistics.add(statistics);

@@ -18,8 +18,8 @@ public class TestInfrastructureAPIFactory {
 
     public static String TEST_CLUSTER_NAME = "cluster1";
     public static String FIRST_INSTANCE_NAME = "instance1";
-    public static String SECOND_INSTANCE_NAME = "instance1";
-    public static String THIRD_INSTANCE_NAME = "instance1";
+    public static String SECOND_INSTANCE_NAME = "instance2";
+    public static String THIRD_INSTANCE_NAME = "instance3";
 
 
     public InfrastructureAPI createBasicTestInfrastructureAPI(){
@@ -50,5 +50,31 @@ public class TestInfrastructureAPIFactory {
 
     public InfrastructureAPI createChangingInfastructureAPI(){
         return new MutableMockInfrastructureAPI();
+    }
+
+    public InfrastructureAPI createOverloadedTestInfrastructureAPI(){
+        final Map<PhysicalClusterId, Set<PhysicalInstanceId>> clusterInstances = new HashMap<>();
+        PhysicalClusterId clusterId = new PhysicalClusterId(TEST_CLUSTER_NAME);
+        PhysicalInstanceId firstInstanceId = new PhysicalInstanceId(FIRST_INSTANCE_NAME);
+        PhysicalInstanceId secondInstanceId = new PhysicalInstanceId(SECOND_INSTANCE_NAME);
+        PhysicalInstanceId thirdInstanceId = new PhysicalInstanceId(THIRD_INSTANCE_NAME);
+
+        clusterInstances.put(clusterId,Stream.of(firstInstanceId, secondInstanceId, thirdInstanceId).collect(Collectors.toSet()));
+
+        final Map<PhysicalInstanceId, PhysicalInstanceStatistics> statisticsForInstances = new HashMap<>();
+
+        PhysicalInstanceStatistics firstInstanceStatistics = PhysicalInstanceStatistics.builder()
+                .activeSession(20).sessionNumberLimit(20).build();
+        PhysicalInstanceStatistics secondInstanceStatistics = PhysicalInstanceStatistics.builder()
+                .activeSession(20).sessionNumberLimit(20).build();
+        PhysicalInstanceStatistics thirdInstanceStatistics = PhysicalInstanceStatistics.builder()
+                .activeSession(20).sessionNumberLimit(20).build();
+
+        statisticsForInstances.put(firstInstanceId, firstInstanceStatistics);
+        statisticsForInstances.put(secondInstanceId, secondInstanceStatistics);
+        statisticsForInstances.put(thirdInstanceId, thirdInstanceStatistics);
+
+        return new MockInfrastructureAPI(clusterInstances, statisticsForInstances);
+
     }
 }

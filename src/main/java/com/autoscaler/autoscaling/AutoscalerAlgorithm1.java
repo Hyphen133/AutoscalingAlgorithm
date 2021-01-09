@@ -8,19 +8,22 @@ import com.autoscaler.monitoring.VirtualMonitorContainer;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AutoscalerAlgotihm1 implements Autoscaler {
+public class AutoscalerAlgorithm1 implements Autoscaler {
 
     private VirtualMonitorContainer monitor;
     private ClusterLimitsConfig clusterLimits;
-    private int sessionUpperBound = 5;
-    private int sessionLowerBound = 2;
+    private double sessionUpperBound;
+    private double sessionLowerBound;
 
-    public AutoscalerAlgotihm1(VirtualMonitorContainer monitor) {
+    public AutoscalerAlgorithm1(final VirtualMonitorContainer monitor, final ClusterLimitsConfig clusterLimits, final double sessionUpperBound, final double sessionLowerBound) {
         this.monitor = monitor;
+        this.clusterLimits = clusterLimits;
+        this.sessionUpperBound = sessionUpperBound;
+        this.sessionLowerBound = sessionLowerBound;
     }
 
     @Override
-    public Set<AutoscalerDecision> adjustInfrastructureState() {
+    public Set<AutoscalerDecision> makeAdjustmentDecisions() {
         final IterationStatistics lastIterationStatistics = this.monitor.getLastStatistics(1).get(0);
 
         Set<AutoscalerDecision> decisions = new HashSet<>();
