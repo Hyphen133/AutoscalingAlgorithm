@@ -20,19 +20,28 @@ import java.util.stream.Stream;
 public class EndToEndAutoscalerTest {
     @Test
     public void sessionBasedAlgorithmShouldDecreaseLoad(){
-        //Given
-        final InfrastructureAPI infrastructureAPI = new TestInfrastructureAPIFactory().createOverloadedTestInfrastructureAPI();
-        final Set<VirtualClusterId> registeredIds = Stream.of(new VirtualClusterId(TestInfrastructureAPIFactory.TEST_CLUSTER_NAME)).collect(Collectors.toSet());
-        StatisticsLoader statisticsLoader = new StandardStatisticsLoader(infrastructureAPI, registeredIds);
-        VirtualMonitorContainer monitorContainer = new VirtualMonitorContainer();
-        monitorContainer.addEntry(statisticsLoader.gatherStatistics());
         ClusterLimitsConfig limitsConfig = new ClusterLimitsConfig(Map.of(new VirtualClusterId(TestInfrastructureAPIFactory.TEST_CLUSTER_NAME), new ClusterLimits(15, 3)));
+        //Given
+        VirtualMonitorContainer monitorContainer = createVirtualMonitorContainer();
         Autoscaler autoscaler = new SessionBasedAutoscalingAlgorithm(monitorContainer, limitsConfig, 0.8, 0.2);
 
         //When
         final Set<AutoscalerDecision> autoscalerDecisions = autoscaler.makeAdjustmentDecisions();
 
         //Then
+        algorithmDecidesToIncreaseLoad(autoscalerDecisions);
+    }
+
+    private void algorithmDecidesToIncreaseLoad(final Set<AutoscalerDecision> autoscalerDecisions) {
         Assertions.assertEquals(1, autoscalerDecisions.stream().findFirst().get().getNumberOfMachinesToAdd());
+    }
+
+    private VirtualMonitorContainer createVirtualMonitorContainer() {
+        final InfrastructureAPI infrastructureAPI = new TestInfrastructureAPIFactory().createOverloadedTestInfrastructureAPI();
+        final Set<VirtualClusterId> registeredIds = Stream.of(new VirtualClusterId(TestInfrastructureAPIFactory.TEST_CLUSTER_NAME)).collect(Collectors.toSet());
+        StatisticsLoader statisticsLoader = new StandardStatisticsLoader(infrastructureAPI, registeredIds);
+        VirtualMonitorContainer monitorContainer = new VirtualMonitorContainer();
+        monitorContainer.addEntry(statisticsLoader.gatherStatistics());
+        return monitorContainer;
     }
 }
