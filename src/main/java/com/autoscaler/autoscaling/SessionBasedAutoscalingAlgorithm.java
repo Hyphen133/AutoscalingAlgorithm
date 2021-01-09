@@ -8,14 +8,14 @@ import com.autoscaler.monitoring.VirtualMonitorContainer;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AutoscalerAlgorithm1 implements Autoscaler {
+public class SessionBasedAutoscalingAlgorithm implements Autoscaler {
 
     private VirtualMonitorContainer monitor;
     private ClusterLimitsConfig clusterLimits;
     private double sessionUpperBound;
     private double sessionLowerBound;
 
-    public AutoscalerAlgorithm1(final VirtualMonitorContainer monitor, final ClusterLimitsConfig clusterLimits, final double sessionUpperBound, final double sessionLowerBound) {
+    public SessionBasedAutoscalingAlgorithm(final VirtualMonitorContainer monitor, final ClusterLimitsConfig clusterLimits, final double sessionUpperBound, final double sessionLowerBound) {
         this.monitor = monitor;
         this.clusterLimits = clusterLimits;
         this.sessionUpperBound = sessionUpperBound;

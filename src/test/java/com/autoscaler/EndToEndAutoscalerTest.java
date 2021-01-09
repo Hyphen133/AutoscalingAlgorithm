@@ -1,7 +1,7 @@
 package com.autoscaler;
 
 import com.autoscaler.autoscaling.Autoscaler;
-import com.autoscaler.autoscaling.AutoscalerAlgorithm1;
+import com.autoscaler.autoscaling.SessionBasedAutoscalingAlgorithm;
 import com.autoscaler.autoscaling.AutoscalerDecision;
 import com.autoscaler.autoscaling.ClusterLimits;
 import com.autoscaler.autoscaling.ClusterLimitsConfig;
@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 
 public class EndToEndAutoscalerTest {
     @Test
-    public void algorithm1ShouldDecreaseLoad(){
+    public void sessionBasedAlgorithmShouldDecreaseLoad(){
         //Given
         final InfrastructureAPI infrastructureAPI = new TestInfrastructureAPIFactory().createOverloadedTestInfrastructureAPI();
         final Set<VirtualClusterId> registeredIds = Stream.of(new VirtualClusterId(TestInfrastructureAPIFactory.TEST_CLUSTER_NAME)).collect(Collectors.toSet());
@@ -27,7 +27,7 @@ public class EndToEndAutoscalerTest {
         VirtualMonitorContainer monitorContainer = new VirtualMonitorContainer();
         monitorContainer.addEntry(statisticsLoader.gatherStatistics());
         ClusterLimitsConfig limitsConfig = new ClusterLimitsConfig(Map.of(new VirtualClusterId(TestInfrastructureAPIFactory.TEST_CLUSTER_NAME), new ClusterLimits(15, 3)));
-        Autoscaler autoscaler = new AutoscalerAlgorithm1(monitorContainer, limitsConfig, 0.8, 0.2);
+        Autoscaler autoscaler = new SessionBasedAutoscalingAlgorithm(monitorContainer, limitsConfig, 0.8, 0.2);
 
         //When
         final Set<AutoscalerDecision> autoscalerDecisions = autoscaler.makeAdjustmentDecisions();
