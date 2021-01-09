@@ -22,7 +22,7 @@ public class IterationStatistics {
         // TODO -> not very optimal
         for (VirtualCluster cluster : virtualClusterMap.values()) {
             try{
-                cluster.getMachine(virtualMachineId);
+                return cluster.getMachine(virtualMachineId);
             }catch (RuntimeException e){
                 //Try another
             }
