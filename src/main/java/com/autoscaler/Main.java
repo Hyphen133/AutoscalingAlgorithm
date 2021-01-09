@@ -1,4 +1,4 @@
-package com.autoscaling;
+package com.autoscaler;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

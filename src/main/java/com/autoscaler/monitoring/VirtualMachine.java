@@ -1,4 +1,4 @@
-package com.autoscaling.monitoring;
+package com.autoscaler.monitoring;
 
 import lombok.Builder;
 import lombok.Getter;

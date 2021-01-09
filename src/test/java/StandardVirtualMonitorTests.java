@@ -1,11 +1,11 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.autoscaling.infastructureapi.InfrastructureAPI;
-import com.autoscaling.monitoring.IterationStatistics;
-import com.autoscaling.monitoring.StandardVirtualMonitor;
-import com.autoscaling.monitoring.VirtualClusterId;
-import com.autoscaling.monitoring.VirtualMachineId;
-import com.autoscaling.monitoring.VirtualMonitor;
+import com.autoscaler.infastructureapi.InfrastructureAPI;
+import com.autoscaler.monitoring.IterationStatistics;
+import com.autoscaler.monitoring.StandardVirtualMonitor;
+import com.autoscaler.monitoring.VirtualClusterId;
+import com.autoscaler.monitoring.VirtualMachineId;
+import com.autoscaler.monitoring.VirtualMonitor;
 import org.junit.jupiter.api.Test;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

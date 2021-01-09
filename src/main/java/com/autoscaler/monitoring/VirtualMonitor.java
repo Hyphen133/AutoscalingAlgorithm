@@ -1,6 +1,4 @@
-package com.autoscaling.monitoring;
-
-import java.util.Map;
+package com.autoscaler.monitoring;
 
 public interface VirtualMonitor {
     IterationStatistics gatherStatistics();

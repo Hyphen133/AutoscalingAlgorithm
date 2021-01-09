@@ -1,6 +1,6 @@
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.autoscaling.infastructureapi.PhysicalInstanceId;
+import com.autoscaler.infastructureapi.PhysicalInstanceId;
 import org.junit.jupiter.api.Test;
 
 public class InfrastructureAPITests {

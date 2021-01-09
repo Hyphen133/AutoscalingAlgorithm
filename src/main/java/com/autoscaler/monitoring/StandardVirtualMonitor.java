@@ -1,10 +1,9 @@
-package com.autoscaling.monitoring;
+package com.autoscaler.monitoring;
 
-import com.autoscaling.infastructureapi.InfrastructureAPI;
-import com.autoscaling.infastructureapi.PhysicalClusterId;
-import com.autoscaling.infastructureapi.PhysicalInstanceId;
-import com.autoscaling.infastructureapi.PhysicalInstanceStatistics;
-import java.util.HashMap;
+import com.autoscaler.infastructureapi.InfrastructureAPI;
+import com.autoscaler.infastructureapi.PhysicalClusterId;
+import com.autoscaler.infastructureapi.PhysicalInstanceId;
+import com.autoscaler.infastructureapi.PhysicalInstanceStatistics;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;

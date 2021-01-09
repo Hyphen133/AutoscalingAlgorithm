@@ -1,4 +1,4 @@
-package com.autoscaling.infastructureapi;
+package com.autoscaler.infastructureapi;
 
 import java.util.Map;
 import java.util.Set;

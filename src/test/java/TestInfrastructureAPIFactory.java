@@ -1,8 +1,8 @@
-import com.autoscaling.infastructureapi.PhysicalClusterId;
-import com.autoscaling.infastructureapi.InfrastructureAPI;
-import com.autoscaling.infastructureapi.PhysicalInstanceId;
-import com.autoscaling.infastructureapi.MockInfrastructureAPI;
-import com.autoscaling.infastructureapi.PhysicalInstanceStatistics;
+import com.autoscaler.infastructureapi.PhysicalClusterId;
+import com.autoscaler.infastructureapi.InfrastructureAPI;
+import com.autoscaler.infastructureapi.PhysicalInstanceId;
+import com.autoscaler.infastructureapi.MockInfrastructureAPI;
+import com.autoscaler.infastructureapi.PhysicalInstanceStatistics;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
