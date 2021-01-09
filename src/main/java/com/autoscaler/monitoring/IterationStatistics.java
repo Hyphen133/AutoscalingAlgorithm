@@ -1,11 +1,14 @@
 package com.autoscaler.monitoring;
 
+import java.util.Date;
 import java.util.Map;
 
 public class IterationStatistics {
+    private Date date;
     private Map<VirtualClusterId, VirtualCluster> virtualClusterMap;
 
-    public IterationStatistics(final Map<VirtualClusterId, VirtualCluster> virtualClusterMap) {
+    public IterationStatistics(final Date dateTime, final Map<VirtualClusterId, VirtualCluster> virtualClusterMap) {
+        this.date = date;
         this.virtualClusterMap = virtualClusterMap;
     }
 

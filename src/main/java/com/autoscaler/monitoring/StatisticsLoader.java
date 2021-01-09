@@ -1,6 +1,6 @@
 package com.autoscaler.monitoring;
 
-public interface VirtualMonitor {
+public interface StatisticsLoader {
     IterationStatistics gatherStatistics();
 
 }

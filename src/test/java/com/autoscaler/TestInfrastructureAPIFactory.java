@@ -1,3 +1,6 @@
+package com.autoscaler;
+
+import com.autoscaler.infastructureapi.MutableMockInfrastructureAPI;
 import com.autoscaler.infastructureapi.PhysicalClusterId;
 import com.autoscaler.infastructureapi.InfrastructureAPI;
 import com.autoscaler.infastructureapi.PhysicalInstanceId;
@@ -10,6 +13,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class TestInfrastructureAPIFactory {
+    public static String CHANGEABLE_TEST_CLUSTER = "testCluster";
+    public static String CHANGEABLE_TEST_INSTANCE = "testInstance";
+
     public static String TEST_CLUSTER_NAME = "cluster1";
     public static String FIRST_INSTANCE_NAME = "instance1";
     public static String SECOND_INSTANCE_NAME = "instance1";
@@ -40,5 +46,9 @@ public class TestInfrastructureAPIFactory {
 
         return new MockInfrastructureAPI(clusterInstances, statisticsForInstances);
 
+    }
+
+    public InfrastructureAPI createChangingInfastructureAPI(){
+        return new MutableMockInfrastructureAPI();
     }
 }

@@ -4,6 +4,8 @@ import com.autoscaler.infastructureapi.InfrastructureAPI;
 import com.autoscaler.infastructureapi.PhysicalClusterId;
 import com.autoscaler.infastructureapi.PhysicalInstanceId;
 import com.autoscaler.infastructureapi.PhysicalInstanceStatistics;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -13,11 +15,11 @@ import java.util.stream.Collectors;
 *   This class gathers statistics for all Virtual Clusters registered
 *
  */
-public class StandardVirtualMonitor implements VirtualMonitor {
+public class StandardStatisticsLoader implements StatisticsLoader {
     private InfrastructureAPI infrastructureAPI;
     private final Set<VirtualClusterId> registeredClusterIds;
 
-    public StandardVirtualMonitor(final InfrastructureAPI infrastructureAPI, final Set<VirtualClusterId> clusterIds) {
+    public StandardStatisticsLoader(final InfrastructureAPI infrastructureAPI, final Set<VirtualClusterId> clusterIds) {
         this.infrastructureAPI = infrastructureAPI;
         this.registeredClusterIds = clusterIds;
     }
@@ -27,7 +29,7 @@ public class StandardVirtualMonitor implements VirtualMonitor {
         for (VirtualClusterId registeredClusterId : registeredClusterIds) {
             clusters.add(gatherStatisticsForCluster(registeredClusterId));
         }
-        return new IterationStatistics(clusterSetToMap(clusters));
+        return new IterationStatistics(new Date(), clusterSetToMap(clusters));
     }
 
     private VirtualCluster gatherStatisticsForCluster(final VirtualClusterId registeredClusterId) {

@@ -1,6 +1,7 @@
+package com.autoscaler.infastructureapi;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.autoscaler.infastructureapi.PhysicalInstanceId;
 import org.junit.jupiter.api.Test;
 
 public class InfrastructureAPITests {
