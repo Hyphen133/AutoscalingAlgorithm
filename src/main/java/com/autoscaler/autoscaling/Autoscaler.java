@@ -1,4 +1,4 @@
-package com.autoscaler.autoscaler;
+package com.autoscaler.autoscaling;
 
 public interface Autoscaler {
     AutoscalerDecision adjustInfrastructureState();

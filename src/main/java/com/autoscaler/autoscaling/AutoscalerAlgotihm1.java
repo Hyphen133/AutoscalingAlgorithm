@@ -1,4 +1,4 @@
-package com.autoscaler.autoscaler;
+package com.autoscaler.autoscaling;
 
 import com.autoscaler.monitoring.StatisticsLoader;
 
